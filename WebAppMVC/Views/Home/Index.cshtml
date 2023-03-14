@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Dominio.Seleccion>
+
+@{
+    ViewData["Title"] = "Listado de selecciones";
+    List<Dominio.Seleccion> listaSelecciones = Model.ToList();
+    listaSelecciones.Sort();
+}
+
+    <table class="table">
+        @foreach(var seleccion in listaSelecciones)
+                    {
+
+        <tr>
+            <td><h3>@seleccion.Pais.Nombre</h3></td>
+        </tr>
+        @foreach(var jugador in seleccion.GetJugadores())
+                        {
+        <tr>
+            <td>@jugador.NombreCompleto</td>
+            <td>@jugador.Puesto</td>
+        </tr>
+                        }
+}
+    </table>

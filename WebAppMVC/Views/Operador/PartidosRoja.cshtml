@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Dominio.Partido>
+
+@{
+    ViewData["Title"] = "Listado de partidos que hubo roja reseñados por el periodista ingresado";
+}
+
+<form method="post">
+    <input type="email" name="mail" placeholder="Ingresar mail"/>
+    <input type="submit" name="Mostrar"/>
+</form>
+
+<table class="table">
+    <tr>
+        <td><h3>Fecha del partido</h3></td>
+        <td><h3>Selección 1</h3></td>
+        <td><h3>Selección 2</h3></td>
+    </tr>
+    
+    @if (Model != null) //Un caso análogo al comentado en EntreFechas.cshtml.
+    {
+        @foreach (var partido in Model)
+        {
+            <tr>
+                <td>@partido.Fecha</td>
+                <td>@partido.Seleccion1.Pais.Nombre</td>
+                <td>@partido.Seleccion2.Pais.Nombre</td>
+            </tr>
+        }
+    }
+    
+</table>

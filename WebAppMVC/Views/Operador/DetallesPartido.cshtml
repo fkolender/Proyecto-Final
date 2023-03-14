@@ -1,0 +1,156 @@
+﻿@model Dominio.Partido
+@using Dominio
+
+@{
+    Sistema s = Sistema.Instancia;
+}
+
+@*Esta tabla es para GRUPOS*@
+@{
+    if (Model.GetTipo() == "G")
+    {
+        Dominio.PartidoGrupo p = Model as PartidoGrupo;
+    <table class="table">
+
+                <tr>
+                    <th>Grupo</th>
+                    <th>Fecha</th>
+                    <th>Seleccion 1</th>
+                    <th>Seleccion 2</th>
+                    <th>Resultado del partido</th>
+                </tr>
+
+
+                <tr>
+                    <td>@p.Grupo</td>
+                    <td>@p.Fecha</td>
+                    @*nombre del país, goles de selección 1, amarillas de selección 1, rojas de selección 1	*@
+                    <td>
+                        <h3>País:</h3>@p.Seleccion1.Pais<br />
+                        <h3>Goles:</h3>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 2).Count()<br />
+                        <h3>Amarillas:</h3>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 0).Count()<br />
+                        <h3>Rojas:</h3>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 1).Count()<br />
+                    </td>
+                    <td>
+                        <h3>País:</h3>@p.Seleccion2.Pais<br />
+                        <h3>Goles:</h3>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 2).Count()<br />
+                        <h3>Amarillas:</h3>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 0).Count()<br />
+                        <h3>Rojas:</h3>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 1).Count()<br />
+                    </td>
+                    <td>@p.ResultadoPartido</td>
+                </tr>
+    </table>
+    }
+}
+
+@*Esta tabla es para ELIMINATORIA*@
+@{
+    if (Model.GetTipo() == "E")
+    {
+        Dominio.PartidoEliminatoria p = Model as PartidoEliminatoria;
+    <table class="table">
+
+                <tr>
+                    <th>Fase</th>
+                    <th>Fecha</th>
+                    <th>Seleccion 1</th>
+                    <th>Seleccion 2</th>
+                    <th>Resultado del partido</th>
+                </tr>
+
+
+                <tr>
+                    <td>@p.Etapa</td>
+                    <td>@p.Fecha</td>
+                    @*nombre del país, goles de selección 1, amarillas de selección 1, rojas de selección 1	*@
+                    <td>
+                    <h3>País:</h3>@p.Seleccion1.Pais.Nombre<br /><br />
+                        @*Tanto para los goles, como para las incidencias se mostrará el momento en que se
+                        produjeron*@
+                        <h3>Goles:</h3> <span><b>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 2).Count()</b></span><br />
+                        @{
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 2))
+                        {
+                            <span><b>Gol:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                        }<br />
+                    <h3>Amarillas:</h3> <span><b>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 0).Count()</b></span><br />
+                        
+                        @{
+
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 0))
+                        {
+                            <span><b>Amarilla:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                        }<br />
+                    <h3>Rojas:</h3><span><b>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 1).Count()</b></span><br />
+                        
+                        @{
+
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 1))
+                        {
+                            <span><b>Roja:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                        }<br />
+                    </td>
+                <td>
+                    <h3>País:</h3>@p.Seleccion2.Pais.Nombre<br /><br />
+                    @*Tanto para los goles, como para las incidencias se mostrará el momento en que se
+            produjeron*@
+                    <h3>Goles:</h3> <span><b>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 2).Count()</b></span><br />
+                    @{
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 2))
+                        {
+                            <span><b>Gol:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                    }<br />
+                    <h3>Amarillas:</h3> <span><b>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 0).Count()</b></span><br />
+
+                    @{
+
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 0))
+                        {
+                            <span><b>Amarilla:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                    }<br />
+                    <h3>Rojas:</h3><span><b>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 1).Count()</b></span><br />
+
+                    @{
+
+                        foreach (var i in p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 1))
+                        {
+                            <span><b>Roja:</b> @i.Jugador.NombreCompleto, Minuto: @i.Minuto'</span>
+
+                            <br />
+                        }
+                    }<br />
+                </td>
+                    @*Se indicará quién fue el ganador, si finalizó dentro del tiempo reglamentario (antes de
+                    los 90 minutos), si hubo alargue, si hubo penales.*@
+                    <td>
+                        <span>@p.ResultadoPartido</span><br />
+                        @if (p.Alargue)
+                    {<span>Hubo alargue</span><br />}
+                    else
+                    {<span>Finalizo en 90'</span><br />}
+                        @if (p.Penales)
+                    {<span>Hubo penales</span><br />}
+                    else
+                    {<span>No hubo penales</span><br />}
+                    </td>
+                </tr>
+    </table>
+    }
+
+}
+

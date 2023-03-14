@@ -1,0 +1,16 @@
+﻿@model Dominio.Reseña
+
+<h1>Alta de Reseña</h1>
+
+<form method="post">
+
+    Título: <br />
+    <input type="text" asp-for="Titulo" /><br />
+    Contenido:<br />
+    <input type="text" asp-for="Contenido" /><br />
+    <br />
+
+    <input type="submit" value="Guardar reseña" />
+
+</form>
+@ViewBag.msg

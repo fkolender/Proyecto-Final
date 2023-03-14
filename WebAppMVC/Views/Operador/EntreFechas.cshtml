@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Dominio.Partido> 
+
+@using Dominio
+
+@{
+    ViewData["Title"] = "Listado de partidos entre dos fechas";
+}
+
+<form method="post">
+    <input type="datetime" name="fecha1" placeholder="Fecha 1" />
+    <input type="datetime" name="fecha2" placeholder="Fecha 2" />
+    <input type="submit" />
+</form>
+
+@ViewBag.msg
+
+<table class="table">
+
+    <tr>
+        <td><h3>Selección</h3></td>
+        <td><h3>Goles</h3></td>
+        <td><h3>Amarillas</h3></td>
+        <td><h3>Rojas</h3></td>
+    </tr>
+
+
+    @{ //Se tiene el if debajo debido a que lo va a evaluar al iniciar la página, y nuevamente al ejecutar el HttpPost. Con este if, nos aseguramos de que no recorra la lista de partidos la primera vez y solo lo haga cuando estemos seguros de tener elementos en ella.
+        if (Model != null)
+        {
+            foreach (var p in Model)
+            {
+                <tr>
+                    <td>
+                        <h3>Partido ocurrió el día: @p.Fecha</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@p.Seleccion1.Pais.Nombre</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 0).Count</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 1).Count</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion1.Pais.Nombre, 2).Count</td>
+                </tr>
+
+                <tr>
+                    <td>@p.Seleccion2.Pais.Nombre</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 0).Count</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 1).Count</td>
+                    <td>@p.GetIncidenciasSeleccion(p.Seleccion2.Pais.Nombre, 2).Count</td>
+                </tr>
+
+            }
+        }
+    }
+</table>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Dominio.Partido>
+
+@{
+    ViewData["Title"] = "Listado de partidos cerrados";
+    List<Dominio.Partido> listaPartidos = Model.ToList();
+}
+
+<table class="table">
+    <tr>
+        <td><h3>Fecha del partido</h3></td>
+        <td><h3>Selección 1</h3></td>
+        <td><h3>Selección 2</h3></td>
+        <td><h3>Operaciones</h3></td>
+    </tr>
+
+    @foreach (var partido in listaPartidos)
+    {
+        if (partido.Finalizado)
+        {
+            <tr>
+                <td>@partido.Fecha</td>
+                <td>@partido.Seleccion1.Pais.Nombre</td>
+                <td>@partido.Seleccion2.Pais.Nombre</td>
+                <td>@Html.ActionLink("Crear Reseña", "CreateReseña", "Periodista", new { pID = partido.Id })</td>
+            </tr>
+        }
+    }
+</table>

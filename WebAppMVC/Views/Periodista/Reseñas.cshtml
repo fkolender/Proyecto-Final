@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@model IEnumerable<Dominio.Reseña>
+
+
+@{
+    ViewData["Title"] = "Listado de reseñas realizadas por el periodista";
+    List<Dominio.Reseña> listaReseñas = Model.ToList();
+    listaReseñas.Sort();
+}
+
+<table class="table">
+    <tr>
+        <th>Titulo</th>
+        <th>Contenido</th>
+        <th>Selección 1</th>
+        <th>Selección 2</th>
+    </tr>
+    @foreach (var reseña in listaReseñas)
+    {
+        if (reseña.Periodista.Id == Context.Session.GetInt32("LogueadoId"))
+        {
+            <tr>
+                <td>@reseña.Titulo</td>
+                <td>@reseña.Contenido</td>
+                <td>@reseña.Partido.Seleccion1.Pais.Nombre</td>
+                <td>@reseña.Partido.Seleccion2.Pais.Nombre</td>
+            </tr>
+        }
+
+    }
+</table>

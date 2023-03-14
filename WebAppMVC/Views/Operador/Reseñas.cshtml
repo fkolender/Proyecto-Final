@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Dominio.Reseña>
+
+@*Se tuvo que crear una vista nueva porque buscamos consonancia conceptual con los links, y si el usuario Operador entraba a la misma vista de Reseñas que el Periodista, entonces uno de los dos vería un link con un controlador del rol contrario al suyo.*@
+@{
+    ViewData["Title"] = "Listado de reseñas realizadas por el periodista";
+    List<Dominio.Reseña> listaReseñas = Model.ToList();
+    listaReseñas.Sort();
+}
+
+<table class="table">
+    <tr>
+        <th>Fecha</th>
+        <th>Grupo</th>
+        <th>Contenido</th>
+        <th>Selección 1</th>
+        <th>Selección 2</th>
+    </tr>
+    @foreach (var reseña in listaReseñas)
+    {
+     <tr>
+                <td>@reseña.Fecha</td>
+                @if(reseña.Partido.GetTipo() == "G") //Casteo el partido de la reseña para poder mostrar un atributo específico a la subclase en caso de que sea de esta.
+                {
+                    Dominio.PartidoGrupo partidoCast = reseña.Partido as Dominio.PartidoGrupo;
+                    <td>@partidoCast.Grupo</td>
+                }
+                else
+                {
+                    <td>Eliminatoria</td>
+                }
+                <td>@reseña.Contenido</td>
+                <td>@reseña.Partido.Seleccion1.Pais.Nombre</td>
+                <td>@reseña.Partido.Seleccion2.Pais.Nombre</td>
+     </tr>
+    }
+</table>

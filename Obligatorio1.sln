@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{4AFFE800-11A3-4773-8515-A777F36167AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaz", "Interfaz\Interfaz.csproj", "{7D1292F5-95F9-4DD2-8999-FC47C89EBB31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppMVC", "WebAppMVC\WebAppMVC.csproj", "{E37F1E08-B59A-4B06-9CD3-675F148F38AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AFFE800-11A3-4773-8515-A777F36167AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AFFE800-11A3-4773-8515-A777F36167AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AFFE800-11A3-4773-8515-A777F36167AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AFFE800-11A3-4773-8515-A777F36167AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1292F5-95F9-4DD2-8999-FC47C89EBB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1292F5-95F9-4DD2-8999-FC47C89EBB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1292F5-95F9-4DD2-8999-FC47C89EBB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1292F5-95F9-4DD2-8999-FC47C89EBB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E37F1E08-B59A-4B06-9CD3-675F148F38AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E37F1E08-B59A-4B06-9CD3-675F148F38AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E37F1E08-B59A-4B06-9CD3-675F148F38AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E37F1E08-B59A-4B06-9CD3-675F148F38AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A39794CA-557E-475C-96AA-7ECA987B20CF}
+	EndGlobalSection
+EndGlobal

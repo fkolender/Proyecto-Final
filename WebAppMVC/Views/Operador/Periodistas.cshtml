@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Dominio.Periodista>
+
+@{
+    ViewData["Title"] = "Listado de periodistas";
+    List<Dominio.Periodista> listaPeriodistas = Model.ToList();
+    listaPeriodistas.Sort();
+}
+
+<table class="table">
+    @foreach (var periodista in listaPeriodistas)
+    {
+
+        <tr>
+            <td><h3>@periodista.Nombre @periodista.Apellido</h3></td>
+            <td>@periodista.Id</td>
+            <td>@periodista.Mail</td>
+            <td>@Html.ActionLink("Reseñas", "Reseñas", "Operador", new { id = periodista.Id })</td> 
+        </tr>
+    }
+</table>

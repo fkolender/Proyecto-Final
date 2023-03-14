@@ -1,0 +1,25 @@
+﻿@model Dominio.Periodista
+
+<h1>Registro de usuarios tipo Periodista</h1>
+
+<form method="post">
+
+    
+    Nombre:<br />
+    <input type="text" asp-for="Nombre" /><br />
+
+    Apellido:<br />
+    <input type="text" asp-for="Apellido" /><br />
+
+    Email:<br />
+    <input type="text" asp-for="Mail" /><br />
+
+    Password:<br />
+    <input type="password" asp-for="Password" /><br />
+
+    <input type="submit" value="Guardar" />
+
+
+</form>
+
+@ViewBag.msg

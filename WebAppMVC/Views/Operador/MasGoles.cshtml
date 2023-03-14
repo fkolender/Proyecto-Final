@@ -1,0 +1,27 @@
+﻿@using Dominio
+
+@model IEnumerable<Dominio.Seleccion>
+
+@{
+    ViewData["Title"] = "Listado de selecciones";
+    List<Dominio.Seleccion> listaSelecciones = Model.ToList();
+    listaSelecciones.Sort();
+    Sistema s = Sistema.Instancia;
+}
+
+<table class="table">
+    
+    <tr>
+        <td><h3>Selección</h3></td>
+        <td><h3>Cantidad de goles</h3></td>
+    </tr>
+    @foreach (var seleccion in listaSelecciones)
+    {
+
+        <tr>
+            <td>@seleccion.Pais.Nombre</td>
+            <td>@s.CantidadGolesSeleccion(seleccion)</td>
+        </tr>
+
+    }
+</table>
